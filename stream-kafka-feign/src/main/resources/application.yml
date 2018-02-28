@@ -4,14 +4,20 @@ kafka:
   bootstrap-servers: localhost:9092
   
 spring:
+  kafka:
+    consumer:
+      group-id: testEmbeddedKafkaApplication
   cloud:
     stream:
       bindings:
         device_data:
             destination: devicetopic
         heg_topic:
-            consumer: 
-              header-mode: raw 
+            group: embeddedKafkaApplication
+            consumer:
+              header-mode: raw
+               
+              
 eureka:
   client:
     enabled: false

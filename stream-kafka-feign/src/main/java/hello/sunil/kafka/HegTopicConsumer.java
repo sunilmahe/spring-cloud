@@ -19,11 +19,13 @@ public class HegTopicConsumer {
 
     @StreamListener(DeviceDataDto.HEG_MSG_TOPIC)
     public void consumeMessage(Greeting greet){
-    	
+    	System.out.println("GOT : --"+greet.getContent());
     	for (int i=0;i<=2;i++){
     		deviceDataProducer.produceMessage(greet.getContent() + " - "+i); 
     		}
     	String respMsg = feignRestClient.version();
-    	System.out.println("GOT : --"+respMsg);
+    	System.out.println("Response Message "+ respMsg);
+    	
+    	
     }
 }
